@@ -1,0 +1,18 @@
+build:
+  environment:
+    PYTHON_VERSION: 3.9
+  command: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    npm install
+    npm run build
+
+plugins:
+  - package: '@netlify/plugin-python'
+    config:
+      packageManager: pip
+      requirements: requirements.txt
+      
+functions:
+  directory: dist/functions
+  node_bundler: esbuild
